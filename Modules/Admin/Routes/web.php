@@ -16,4 +16,6 @@ Route::group(
         'prefix' => 'admin',
     ], function() {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
+    Route::get('config-single-sms', 'AdminController@singleSMSAction')->name('admin.config-single-sms');
+    Route::post('store-single-sms', 'AdminController@singleSMSStoreAction')->name('admin.store-single-sms');
 });

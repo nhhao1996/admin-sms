@@ -1,25 +1,27 @@
 @extends('admin::layouts.master')
-
 @section('content')
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-        </tr>
-        </thead>
-        <tbody>
-        @if(isset($list))
-            @foreach($list as $item)
-            <tr>
-                <th scope="row">1</th>
-                <td>{{$item['name']}}</td>
-            </tr>
-            @endforeach
-        @endif
-        </tbody>
-    </table>
-    {{ $list->links()}}
+<section class="content">
+    <div class="row justify-content-center mt-5">
+        <div class="col-12 col-md-2">
+            <div class="item-send-mess">
+                <a href="{{ route('admin.config-single-sms') }}">
+                    <div class="title bd-custom font-weight-bold">Gửi một tin</div>
+                    <div class="content">
+                        <img src="{{ asset('assets/image/send1.png') }}">
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-md-2">
+            <div class="item-send-mess">
+                <a href="#">
+                    <div class="title bd-custom font-weight-bold">Gửi nhiều tin</div>
+                    <div class="content">
+                        <img src="{{ asset('assets/image/sendn.png') }}">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection

@@ -7,6 +7,7 @@ namespace Modules\User\Http\Controllers;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Modules\User\Http\Requests\LoginRequest;
 
 class AuthController extends Controller
@@ -32,7 +33,7 @@ class AuthController extends Controller
         if (Auth::attempt($login)) {
             return redirect()->route('admin.dashboard');
         } else {
-            return redirect()->back()->with('status', 'Email hoặc Password không chính xác');
+            return redirect()->back()->with('status','Email hoặc Password không chính xác');
         }
     }
 }

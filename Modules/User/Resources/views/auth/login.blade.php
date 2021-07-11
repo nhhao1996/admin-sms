@@ -1,73 +1,49 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>CES</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="{{asset('assets/libs/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{asset('assets/css/style.css')}}">
+    @yield("_css")
+</head>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('user.auth.postLogin') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="user_name" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="user_name" type="text" class="form-control @error('email') is-invalid @enderror" name="user_name" value="{{ old('email') }}" required autocomplete="user_name" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+<body>
+    <div class="wrapper-login">
+        <form action="{{ route('user.auth.postLogin') }}" method="POST" class="form-login">
+            @csrf
+            <div class="logo-heading__form">
+                <a href="#" class="link__logo">
+                    <img src="/assets/image/logo.png" class="img-fluid logo-img" alt="">
+                </a>
+            </div>
+            <div class="content__form">
+                <div class="field-content__form">
+                    <label for="username">Tài khoản</label>
+                    <input type="text" name="user_name" class="form-control form-border-none" autocomplete="off">
+                </div>
+                <div class="field-content__form">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" name="password" class="form-control form-border-none" autocomplete="off">
+                </div>
+                @if (session('status'))                  
+                    <label class="text-danger">{{ session('status') }}</label>
+                @endif
+                <div class="field-content__form text-center">
+                    <button type="submit" class="btn btn--primary">Đăng nhập</button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
-</div>
-@endsection
+    <!-- include libs -->
+    <script src="{{asset('assets/js/jquery.min.js')}}"></script>
+    <script src="{{asset('assets/libs/bootstrap/js/bootstrap.min.js')}}"></script>
+    @yield('_js')
+    <script src="{{asset('assets/js/main.js')}}"></script>
+</body>
+
+
+</html>

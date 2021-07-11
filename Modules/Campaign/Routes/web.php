@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('campaign')->group(function() {
-    Route::get('/', 'CampaignController@index');
+Route::prefix('send1')->group(function() {
+    Route::get('/', 'CampaignController@index')->name('send1');
 });
